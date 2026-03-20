@@ -31,7 +31,7 @@ Please, fill the following sections about your project.
 
 ### Problematic
 
-> Sleep deprivation and insomnia are increasingly reported among university students and are often associated with reduced cognitive performance, fatigue, and decreased academic productivity. However, the relationship between sleep habits and educational outcomes is complex and influenced by several behavioral and lifestyle factors.** **
+> Sleep deprivation and insomnia are increasingly reported among university students and are often associated with reduced cognitive performance, fatigue, and decreased academic productivity. However, the relationship between sleep habits and educational outcomes is complex and influenced by several behavioral and lifestyle factors.
 >
 > The goal of this project is to investigate how sleep patterns and insomnia symptoms relate to students’ academic functioning and daily academic behaviors. Rather than focusing only on sleep duration, we aim to analyze how multiple factors interact, including sleep quality, night-time awakenings, lifestyle habits, and cognitive consequences such as fatigue or concentration difficulties.
 >
