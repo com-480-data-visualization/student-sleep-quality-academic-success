@@ -27,7 +27,7 @@ Please, fill the following sections about your project.
 >
 > Regarding data quality, the dataset mainly consists of categorical and ordinal survey responses (e.g., Never, Rarely, Sometimes, Often, Always). Some preprocessing will therefore be necessary to encode these responses numerically or ensure consistent ordering for analysis. Minor cleaning may also be required to standardize categories and remove potential inconsistencies.
 >
-> Overall, the dataset requires moderate preprocessing but provides a rich set of variables for exploring behavioral patterns among students
+> Overall, the dataset requires moderate preprocessing but provides a rich set of variables for exploring behavioral patterns among students.
 
 ### Problematic
 
