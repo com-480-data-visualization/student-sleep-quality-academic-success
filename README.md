@@ -21,7 +21,7 @@ Please, fill the following sections about your project.
 
 > We use the *[Student Insomnia and Educational Outcomes](https://data.mendeley.com/datasets/5mvrx4v62z/3)* dataset, a survey-based dataset exploring the relationship between sleep habits, lifestyle factors, and academic performance among students.
 >
-> The dataset contains approximately 996 responsesa nd 16 variables (Version2), collected through a structured questionnaire. It includes demographic information (year of study, gender), sleep-related indicators (sleep duration, difficulty falling asleep, sleep quality), lifestyle factors (screen usage before sleep, caffeine consumption, physical activity), and academic outcomes such as concentration difficulties, class attendance, and self-reported academic performance.
+> The dataset contains approximately 996 responses and 16 variables (Version2), collected through a structured questionnaire. It includes demographic information (year of study, gender), sleep-related indicators (sleep duration, difficulty falling asleep, sleep quality), lifestyle factors (screen usage before sleep, caffeine consumption, physical activity), and academic outcomes such as concentration difficulties, class attendance, and self-reported academic performance.
 >
 > This dataset is well suited for visualization, as it captures multiple interacting factors that influence student wellbeing and academic success. Its structure enables the analysis of relationships between sleep habits, lifestyle behaviors, and educational outcomes.
 >
@@ -70,6 +70,10 @@ Please, fill the following sections about your project.
 ## Milestone 2 (17th April, 5pm)
 
 **10% of the final grade**
+
+Milestone 2 report: [`milestones/Reports/ReportMilestone2.pdf`](milestones/Reports/ReportMilestone2.pdf)
+
+Interactive web prototype (D3): [`website/index.html`](website/index.html). Open that file in a browser, or serve the repo root and visit `/website/index.html`.
 
 ## Milestone 3 (29th May, 5pm)
 
