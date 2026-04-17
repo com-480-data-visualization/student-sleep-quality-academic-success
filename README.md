@@ -73,7 +73,9 @@ Please, fill the following sections about your project.
 
 Milestone 2 report: [`milestones/Reports/ReportMilestone2.pdf`](milestones/Reports/ReportMilestone2.pdf)
 
-Interactive web prototype (D3): [`website/index.html`](website/index.html). Open that file in a browser, or serve the repo root and visit `/website/index.html`.
+**Live website (GitHub Pages):** [https://com-480-data-visualization.github.io/student-sleep-quality-academic-success/](https://com-480-data-visualization.github.io/student-sleep-quality-academic-success/)
+
+Source in repo: [`website/index.html`](website/index.html).
 
 ## Milestone 3 (29th May, 5pm)
 
