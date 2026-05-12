@@ -1,0 +1,117 @@
+/* base.css — design tokens, reset, typography.
+   Light editorial theme: warm cream paper, deep orange brand accent.
+   Pairs Fraunces (modern editorial serif, optical-sized) with Inter for
+   body text. All chart files read colors via CSS variables on :root so
+   palette tweaks propagate everywhere. */
+
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500;1,9..144,600&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+
+:root {
+  /* surfaces — warm cream paper */
+  --bg:           #faf7f2;        /* page background, warm cream */
+  --bg2:          #ffffff;        /* card / surface */
+  --bg3:          #fbf6ef;        /* secondary card / sub-panel */
+  --bg-elev:      #ffffff;        /* tooltip + popovers */
+  --border:       rgba(28,25,23,0.08);
+  --border-strong:rgba(28,25,23,0.16);
+  --tint-warm:    #fff3e8;        /* very pale orange wash */
+
+  /* text — warm stone, not pure black */
+  --text:         #1c1917;        /* primary — stone-900 */
+  --text2:        #57534e;        /* secondary — stone-600 */
+  --text3:        #a8a29e;        /* tertiary — stone-400 */
+
+  /* accents */
+  --accent:       #ea580c;        /* brand orange — primary, links */
+  --accent-soft:  #fb923c;        /* lighter orange — highlights */
+  --accent-deep:  #c2410c;        /* deeper orange — hover */
+  --ink:          #1c1917;        /* deep ink, used for hero contrast */
+  --accent2:      #15803d;        /* green — "good" */
+  --accent3:      #dc2626;        /* red — "alert" */
+  --accent4:      #7c3aed;        /* violet — highlight */
+  --gold:         #ca8a04;        /* amber — annotation */
+  --teal:         #0e7490;        /* deep teal */
+
+  /* halo behind text labels in charts so they stay legible on any fill */
+  --halo:         rgba(255,255,255,0.95);
+  --halo-strong:  rgba(255,255,255,1);
+
+  /* shape */
+  --r-card: 18px;
+  --r-chip: 7px;
+  --r-btn:  10px;
+
+  /* layout */
+  --max-w: 1200px;
+  --pad-x: 2.5rem;
+
+  /* fonts */
+  --font-serif: 'Fraunces', 'Cormorant Garamond', Georgia, serif;
+  --font-sans:  'Inter', system-ui, sans-serif;
+  --font-mono:  'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace;
+
+  /* motion */
+  --t-fast: 150ms;
+  --t-mid:  500ms;
+  --t-slow: 750ms;
+  --ease:   cubic-bezier(0.22, 1, 0.36, 1);
+
+  /* card shadow */
+  --shadow-sm: 0 1px 2px rgba(28,25,23,0.04), 0 1px 3px rgba(28,25,23,0.04);
+  --shadow:    0 6px 24px -10px rgba(28,25,23,0.12), 0 2px 6px rgba(28,25,23,0.04);
+  --shadow-lg: 0 24px 48px -16px rgba(234,88,12,0.16), 0 8px 16px rgba(28,25,23,0.06);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-sans);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  line-height: 1.55;
+  font-feature-settings: 'cv11', 'ss01';
+  letter-spacing: -0.005em;
+}
+
+/* warm grain overlay — keeps the cream from feeling sterile */
+body::before {
+  content: '';
+  position: fixed; inset: 0;
+  background:
+    radial-gradient(ellipse 800px 400px at 80% -10%, rgba(234,88,12,0.05), transparent 60%),
+    radial-gradient(ellipse 600px 300px at 0% 30%,  rgba(124,58,237,0.04), transparent 60%);
+  pointer-events: none;
+  z-index: 0;
+}
+body > * { position: relative; z-index: 1; }
+
+a { color: var(--accent); text-decoration: none; text-underline-offset: 3px; }
+a:hover { text-decoration: underline; text-decoration-thickness: 1.5px; }
+
+button { font-family: inherit; }
+
+::selection { background: rgba(234,88,12,0.18); color: var(--ink); }
+
+/* typography scale — Fraunces handles big display sizes; Inter handles UI */
+h1, h2, h3 {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  line-height: 1.08;
+  letter-spacing: -0.022em;
+  font-variation-settings: 'opsz' 144;
+  color: var(--ink);
+}
+.serif { font-family: var(--font-serif); }
+.mono  { font-family: var(--font-mono); }
+
+/* focus ring (a11y) */
+:focus-visible {
+  outline: 2.5px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
