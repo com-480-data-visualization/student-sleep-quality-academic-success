@@ -1,10 +1,12 @@
 # Project of Data Visualization (COM-480)
 
+
 | Student's name     | SCIPER |
 | ------------------ | ------ |
 | Ali Benchekroun    | 329911 |
 | Elio Rafoul        | 359387 |
 | Hana El Moutaoukil | 340995 |
+
 
 [Milestone 1](#milestone-1) • [Milestone 2](#milestone-2) • [Milestone 3](#milestone-3)
 
@@ -37,9 +39,9 @@ Please, fill the following sections about your project.
 >
 > More specifically, the project will explore the following questions :
 >
-> * Do students reporting poor sleep quality or insomnia symptoms also report greater academic difficulties?
-> * Is there a relationship between sleep duration and perceived academic performance?
-> * How do life style behaviors such as screen usage before sleep, caffeine consumption, or stress levels correlate with sleep disturbances?
+> - Do students reporting poor sleep quality or insomnia symptoms also report greater academic difficulties?
+> - Is there a relationship between sleep duration and perceived academic performance?
+> - How do life style behaviors such as screen usage before sleep, caffeine consumption, or stress levels correlate with sleep disturbances?
 
 ### Exploratory Data Analysis
 
@@ -71,17 +73,98 @@ Please, fill the following sections about your project.
 
 **10% of the final grade**
 
-Milestone 2 report: [`milestones/Reports/ReportMilestone2.pdf`](milestones/Reports/ReportMilestone2.pdf)
+Milestone 2 report: `[milestones/Reports/ReportMilestone2.pdf](milestones/Reports/ReportMilestone2.pdf)`
 
 **Live website (GitHub Pages):** [https://com-480-data-visualization.github.io/student-sleep-quality-academic-success/](https://com-480-data-visualization.github.io/student-sleep-quality-academic-success/)
 
-Source in repo: [`website/index.html`](website/index.html).
+Source in repo: `[website/index.html](website/index.html)`.
 
 ## Milestone 3 (29th May, 5pm)
 
 **80% of the final grade**
 
+**Live demo:** `[https://com-480-data-visualization.github.io/student-sleep-quality-academic-success/](https://com-480-data-visualization.github.io/student-sleep-quality-academic-success/)`
+
+**Screencast:** see `[docs/screencast.md](docs/screencast.md)` (link added after upload).
+
+**Process book:** `[docs/process_book.pdf](docs/process_book.pdf)` (added before final submission).
+
+### The story
+
+Sleep deprivation is the usual explanation for student under-performance — but in this dataset the picture is sharper and stranger. **90 % of the 996 students get at least seven hours per night, yet 46 % rate their sleep "very poor" or "poor", 93 % report "high" or "extremely high" stress, and 88 % rate their academic performance "below average" or "poor".** Only four percent reach "good" or "excellent". The takeaway isn't *sleep more*; it's that **hours are not the same as rest**, and the variables that actually move the needle are sleep quality, stress, screen time and physical activity. The site opens with a six-step scrollytelling sequence that demonstrates this paradox, then hands control to the reader for free exploration.
+
+### Repo structure
+
+```
+.
+├── README.md                              ← Milestones 1, 2, 3
+├── data/                                  ← raw dataset (.csv)
+├── milestones/Instructions/               ← official briefs (.pdf)
+├── milestones/Reports/                    ← Milestone 2 report (.pdf)
+├── docs/
+│   ├── design_notes.md                    ← dated decisions (process-book material)
+│   └── screenshots/                       ← static images
+└── website/
+    ├── index.html                         ← entry point — single-page app
+    ├── css/{base,layout,components}.css   ← design tokens, page layout, UI parts
+    ├── js/
+    │   ├── main.js                        ← boot: load data, init charts, wire filters
+    │   ├── data.js                        ← CSV parser + ordinal value whitelist
+    │   ├── state.js                       ← filter store + d3.dispatch event bus
+    │   ├── filterBar.js                   ← sticky filter UI
+    │   ├── utils.js                       ← tooltip, color scales, CSV download
+    │   └── charts/
+    │       ├── scrolly.js                 ← Act 1 beeswarm + scroll observer
+    │       ├── heatmap.js                 ← RQ1, with chi-square residual toggle
+    │       ├── stacked.js                 ← RQ2, 100 % stacked horizontal bar
+    │       ├── parallel.js                ← RQ3, 6-axis parallel coordinates
+    │       ├── sankey.js                  ← Duration → Quality → Performance flow
+    │       └── radar.js                   ← Act 3 group comparison
+    ├── data/students.csv                  ← copy of the dataset used at runtime
+    └── assets/favicon.svg
+```
+
+### Local setup
+
+The site is plain HTML + ES modules — no build step.
+
+```bash
+cd website
+python3 -m http.server 8000
+# open http://localhost:8000
+```
+
+You need a local server (not `file://`) because the page fetches `data/students.csv` over HTTP.
+
+### Tech stack
+
+- **D3.js v7** — every chart (scales, layouts, transitions, brushes, force).
+- **d3-sankey v0.12** — flow diagram.
+- **Vanilla JS modules** — `<script type="module">`, no bundler, no framework.
+- **Plain CSS** — design tokens in `:root`, three small stylesheets.
+- **DM Serif Display / DM Sans** — Google Fonts.
+
+### Features
+
+- **Act 1: scrollytelling.** Sticky D3 beeswarm with 996 dots; six steps re-group and re-colour the same cohort to demonstrate the paradox (sleep enough → quality terrible → stress universal → performance bad → hours don't predict grades).
+- **Act 2: dashboard.** Sleep quality × performance heatmap with chi-square residual toggle, sleep duration → performance 100 %-stacked bar with proportion/absolute toggle, six-axis parallel coordinates with per-axis brushing, and a Sankey diagram tracing duration → quality → performance flow. All four charts share a single filter store; brushing an axis on the parallel coords applies a chip to the filter bar that any other chart can see.
+- **Act 3: profiles in contrast.** Two-group radar over five lifestyle axes with paired pickers — default compares very-poor vs very-good sleepers.
+- **Shared filter bar** — six dropdowns (gender, year, screens, caffeine, activity, stress) plus a live N counter, a "share my view" URL hash, a CSV export of the current filtered cohort, and a reset button.
+- **Accessibility** — every SVG root has a role and aria-label, focus-visible outline on interactive elements, no rainbow palettes (single-hue sequentials for ordinal data per the perception lecture).
+- **Responsive** — single-column collapse at 980 px; tighter padding at 640 px.
+
+### Team
+
+
+| Student            | SCIPER |
+| ------------------ | ------ |
+| Ali Benchekroun    | 329911 |
+| Elio Rafoul        | 359387 |
+| Hana El Moutaoukil | 340995 |
+
+
 ## Late policy
 
 - < 24h: 80% of the grade for the milestone
 - < 48h: 70% of the grade for the milestone
+

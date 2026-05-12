@@ -1,0 +1,384 @@
+% =============================================================
+%  Process Book — Student Sleep & Academic Performance
+%  COM-480 — Data Visualization · EPFL · Spring 2026
+%  Ali Benchekroun · Elio Rafoul · Hana El Moutaoukil
+% =============================================================
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[a4paper,top=2.1cm,bottom=2.3cm,left=2.1cm,right=2.1cm,
+            headheight=14pt,footskip=1.2cm]{geometry}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{microtype}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+% --- typography ----------------------------------------------------------
+\usepackage{sourceserifpro}
+\usepackage[scaled=0.96]{sourcesanspro}
+\usepackage[scaled=0.92]{sourcecodepro}
+\renewcommand{\familydefault}{\sfdefault}
+
+% --- colour palette (matches the website) --------------------------------
+\usepackage{xcolor}
+\definecolor{paper}    {HTML}{FAF7F2}
+\definecolor{ink}      {HTML}{1C1917}
+\definecolor{muted}    {HTML}{57534E}
+\definecolor{rule}     {HTML}{E7E5E0}
+\definecolor{brand}    {HTML}{EA580C}
+\definecolor{branddeep}{HTML}{C2410C}
+\definecolor{soft}     {HTML}{FFF3E8}
+\definecolor{good}     {HTML}{15803D}
+\definecolor{alert}    {HTML}{DC2626}
+\definecolor{teal}     {HTML}{0E7490}
+\definecolor{violet}   {HTML}{7C3AED}
+
+% --- structure -----------------------------------------------------------
+\usepackage{titlesec}
+\titleformat{\section}
+  {\normalfont\sffamily\Large\bfseries\color{ink}}
+  {\textcolor{brand}{\S\thesection}\hspace{0.7em}}{0pt}{}
+\titleformat{\subsection}
+  {\normalfont\sffamily\large\bfseries\color{ink}}
+  {\textcolor{brand}{\thesubsection}\hspace{0.55em}}{0pt}{}
+\titlespacing*{\section}{0pt}{1.4em}{0.45em}
+\titlespacing*{\subsection}{0pt}{1.1em}{0.25em}
+
+\usepackage{titling}
+\setlength{\droptitle}{-2.4em}
+
+\usepackage{enumitem}
+\setlist[itemize]{leftmargin=1.15em,topsep=0.18em,itemsep=0.18em,parsep=0pt}
+\setlist[enumerate]{leftmargin=1.4em,topsep=0.18em,itemsep=0.18em,parsep=0pt}
+
+\usepackage{parskip}
+\setlength{\parskip}{0.45em}
+
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{ragged2e}
+\newcolumntype{L}[1]{>{\RaggedRight\arraybackslash}p{#1}}
+
+\usepackage{graphicx}
+\usepackage{tikz}
+\usetikzlibrary{positioning,arrows.meta,calc,fit,backgrounds,shapes.geometric}
+
+\usepackage[breakable,skins,raster]{tcolorbox}
+\tcbset{
+  enhanced jigsaw, breakable, sharp corners=northwest,
+  boxrule=0pt, leftrule=2pt, arc=0pt,
+  colback=soft, colframe=brand,
+  coltitle=white,
+  fonttitle=\sffamily\bfseries,
+  left=10pt, right=10pt, top=8pt, bottom=8pt
+}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyfoot[L]{{\footnotesize\color{muted}\sffamily Process Book — Student Sleep \& Academic Performance}}
+\fancyfoot[R]{{\footnotesize\color{muted}\sffamily \thepage\,/\,\pageref{LastPage}}}
+
+\usepackage{lastpage}
+
+\usepackage[colorlinks=true,linkcolor=brand,urlcolor=brand,citecolor=brand]{hyperref}
+
+% --- helper macros -------------------------------------------------------
+\newcommand{\acc}[1]{\textcolor{brand}{\textbf{#1}}}
+\newcommand{\stat}[1]{\textcolor{brand}{\textbf{#1}}}
+\newcommand{\code}[1]{\texttt{\small #1}}
+\newcommand{\rqtag}[1]{\textcolor{brand}{\sffamily\bfseries\footnotesize #1}}
+
+% --- title block (compact, in-flow) --------------------------------------
+\title{}
+\author{}
+\date{}
+
+\begin{document}
+
+% =========================  TITLE BLOCK  =================================
+\begin{flushleft}
+\sffamily\footnotesize\textcolor{brand}{\textbf{COM-480 \ · \  DATA VISUALIZATION \ · \  EPFL \ · \  SPRING 2026}}
+\end{flushleft}
+
+\vspace{0.35em}
+\noindent
+{\sffamily\bfseries\fontsize{26}{34}\selectfont\color{ink}%
+How sleep quality\\[0.25em]
+shapes \textcolor{brand}{\textit{student grades}}.}
+
+\vspace{0.4em}
+\noindent{\large\color{muted}Process book — from the original sketches to the final site.}
+
+\vspace{0.7em}
+\noindent
+\begin{tabular}{@{}l@{\hspace{1.2em}}l@{\hspace{1.2em}}l@{}}
+\sffamily\textbf{Ali Benchekroun} & \sffamily\textbf{Elio Rafoul} & \sffamily\textbf{Hana El Moutaoukil} \\
+\footnotesize\color{muted}329911 & \footnotesize\color{muted}359387 & \footnotesize\color{muted}340995
+\end{tabular}
+
+\vspace{0.4em}
+\noindent\textcolor{rule}{\rule{\linewidth}{0.6pt}}
+
+\noindent\textit{A short report on how a project we expected to be ``more sleep $=$ better grades'' turned into a project about why hours of sleep barely move the needle at all — and how we redesigned every chart, every word and every colour of the site around that finding.}
+
+
+% =========================  S1 — Starting point  =========================
+\section{Starting point}
+\label{sec:start}
+
+When we picked the \emph{Student Insomnia and Educational Outcomes} dataset (Mendeley DOI \href{https://data.mendeley.com/datasets/5mvrx4v62z/3}{10.17632/5mvrx4v62z.3}) back in March, we expected an obvious story. The dataset is 996 student survey responses across 16 categorical variables — demographics, sleep habits, daytime symptoms, lifestyle factors and self-reported academic outcomes. We assumed the visualisations would essentially show \emph{students who sleep less get worse grades}, and our job would be to draw that relationship clearly.
+
+The three research questions we filed in Milestone~1 reflect that assumption:
+
+\begin{itemize}
+  \item \rqtag{RQ1} Do students with poor sleep quality also report more concentration difficulties, daytime fatigue and lower academic performance?
+  \item \rqtag{RQ2} Is there a visible relationship between the number of hours slept per night and perceived academic performance?
+  \item \rqtag{RQ3} How do screen time before bed, caffeine consumption, stress and physical activity correlate with sleep disturbances?
+\end{itemize}
+
+We split the work into three roles for Milestone~2. \textbf{Ali} built the website skeleton and the chart scaffolds in D3 v7; \textbf{Elio} designed the layout grid and the colour system; \textbf{Hana} wrote the Milestone~2 report and prepared the survey-spec reference table we would later use for data validation. We submitted the prototype with the heatmap for RQ1 implemented, the bar chart and parallel-coordinates scaffolds in place, and \emph{simulated data} that approximated what we believed the real dataset would look like. That last decision — simulating instead of loading — is what set us up for the pivot in Milestone~3.
+
+% =========================  S2 — M2 mistakes  ============================
+\section{Milestone~2: sketches and what we got wrong}
+\label{sec:m2}
+
+We submitted five hand-drawn sketches with the Milestone~2 report (Figures~1--5 of that document): the sleep-quality $\times$ performance heatmap, the duration $\times$ performance grouped bar, the lifestyle parallel coordinates, the Sankey flow as a stretch goal, and the radar comparison as a second stretch goal. The grader feedback was encouraging, but two issues surfaced once we plugged in the real CSV at the start of Milestone~3.
+
+\begin{tcolorbox}[title={Two mistakes baked into the prototype}]
+\textbf{1. Label drift.} Our heatmap legend used \emph{Poor / Fair / Average / Good / Excellent} for sleep quality. The real survey labels are \emph{Very poor / Poor / Average / Good / Very good}. We had also assumed a \code{5--6 hours} duration bucket that simply does not exist in the dataset — the survey jumps from \code{4--5 hours} to \code{6--7 hours}.
+
+\textbf{2. Simulated data hid the real story.} The placeholder distribution we generated for the grouped bar deliberately encoded a strong positive correlation between sleep duration and performance. When we loaded the real data we found the opposite — proportions barely shifted across duration buckets.
+\end{tcolorbox}
+
+We took those mistakes seriously enough to make data validation the very first task of Milestone~3. Hana wrote a one-page reference sheet listing every column, every category and the spec count from the source dictionary, and Ali wrote a parser in \code{website/js/data.js} that loads the CSV and \emph{whitelists} every category. Any row whose value does not match the spec is dropped with a console warning. With our reference sheet in hand the whitelist passes 996/996 rows on first run.
+
+We took that strict parser as the contract for the rest of the project. Every chart receives normalised \code{\{raw, ord\}} pairs for ordinal fields, so sorting and scaling use the integer ord while tooltips and labels show the original survey wording. We promised ourselves we would not invent values again.
+
+% =========================  S3 — Pivot  ==================================
+\section{The pivot: what 996 students actually said}
+\label{sec:pivot}
+
+Plugging in the real data changed the project. The headline numbers were so different from what we had assumed that, after a long Friday session re-running the cross-tabulations, we stopped to rewrite the project framing on the whiteboard above Ali's desk.
+
+\begin{tcolorbox}[colback=white, colframe=brand,
+                  leftrule=2pt, sharp corners,
+                  fonttitle=\sffamily\bfseries\color{ink},
+                  title={The headline numbers \textmd{(n = 996)}}]
+\begin{tabular}{@{}r@{\hspace{0.8em}}L{0.78\linewidth}@{}}
+\stat{\Large 90\%} & sleep \textbf{7 hours or more} \\[0.25em]
+\stat{\Large 46\%} & rate their sleep \textbf{very poor} or \textbf{poor} \\[0.25em]
+\stat{\Large 93\%} & report \textbf{high} or \textbf{extremely high} stress \\[0.25em]
+\stat{\Large 88\%} & rate their grades \textbf{poor} or \textbf{below average} \\[0.25em]
+\stat{\Large \phantom{0}4\%} & rate their grades \textbf{good} or \textbf{excellent}
+\end{tabular}
+\end{tcolorbox}
+
+The diagonal we expected in the heatmap of sleep quality vs academic performance turned out to be a kink with most of the mass crammed in the bottom-left corner. Worse, when we cross-tabulated sleep \emph{duration} with performance, the proportions in the 7--8\,h and $>$8\,h bars looked indistinguishable from the $<$4\,h bar. Sleeping more was not associated with better grades. Hana ran a quick $\chi^2$ test in pandas to make sure we were not misreading the cross-tabulation. The duration--performance relationship came back as non-significant; the quality--performance relationship strongly significant.
+
+The project was no longer ``more sleep equals better grades''. It was the opposite: \acc{hours of sleep don't predict grades; quality and lifestyle do.} That paradox became the spine of the final site. We wrote it on the whiteboard as the one sentence every design decision had to respect:
+
+\begin{center}
+\itshape A first-time reader should understand the paradox in under 30 seconds.
+\end{center}
+
+% =========================  S4 — Data story  =============================
+\section{Designing the data story}
+\label{sec:story}
+
+We needed structure. The course's storytelling lecture introduced the \emph{martini-glass} pattern (Segel \& Heer): a single author-driven sequence that opens into a wide reader-driven exploration. That fit our paradox exactly — hook the reader with a guided revelation, then hand them the controls.
+
+\begin{center}
+\begin{tikzpicture}[
+  >={Stealth[length=2.2mm]}, x=1cm, y=1cm,
+  every node/.style={font=\sffamily\footnotesize},
+  block/.style={draw=brand,fill=soft,line width=0.6pt,
+                minimum width=3.5cm,minimum height=1.0cm,inner sep=4pt,align=center},
+]
+\node[block] (a1) at (0,0)   {\textbf{Act 1} — The paradox\\[-0.1em]\scriptsize Scrollytelling beeswarm};
+\node[block] (a2) at (5.5,0) {\textbf{Act 2} — Explore yourself\\[-0.1em]\scriptsize 4-chart dashboard};
+\node[block] (a3) at (11.0,0){\textbf{Act 3} — Profiles in contrast\\[-0.1em]\scriptsize Radar comparison};
+\draw[->,brand,thick] (a1.east) -- (a2.west);
+\draw[->,brand,thick] (a2.east) -- (a3.west);
+\node[font=\sffamily\scriptsize\itshape,color=muted] at (2.75,-0.85) {author-driven};
+\node[font=\sffamily\scriptsize\itshape,color=muted] at (8.25,-0.85) {reader-driven};
+\end{tikzpicture}
+\end{center}
+
+\paragraph{Act 1 — the paradox.} A scrollytelling sequence that re-arranges and re-colours the same 996 dots six times. The reader scrolls down the left rail; the chart on the right reshuffles in place. Each step adds one fact: the cohort sleeps enough, the cohort sleeps poorly, the cohort is stressed, the cohort under-performs, and finally — hours don't explain grades.
+
+\paragraph{Act 2 — explore yourself.} The free-exploration dashboard: heatmap with a chi-square residual toggle, 100\,\%-stacked horizontal bar for duration $\times$ performance, Sankey from duration through quality to performance, and a six-axis parallel-coordinates chart with per-axis brushing. All four charts share a single filter store.
+
+\paragraph{Act 3 — profiles in contrast.} A radar with two paired group pickers, defaulted to \emph{very poor sleepers vs very good sleepers}. The user can swap in any other split.
+
+The order matters. Act~1 earns the reader's attention by surprising them with the paradox. Act~2 invites them to verify it themselves. Act~3 lets them dig into specific contrasts. If we had opened with the dashboard, the paradox would have drowned under the controls.
+
+\paragraph{Rewriting the headline.} Our first hero draft was punchy — \emph{``They sleep enough. They feel terrible. Their grades are worse.''} It sounded more like a tabloid than a survey report, and Hana flagged in review that the italic on \emph{terrible} felt judgmental of students who are already burnt out. We tested four alternatives in a shared doc and settled on the simpler, explicit version: \acc{How sleep quality shapes student grades.}\ The subtitle names every variable the page uses in one sentence, so a reader can size up the project before scrolling.
+
+% =========================  S5 — Visual identity  ========================
+\section{Visual identity}
+\label{sec:visual}
+
+The biggest design change between Milestones~2 and 3 was the \emph{look} of the site. The Milestone~2 prototype shipped on a dark GitHub-style background — fast to build, kind to late-night sessions, and a palette Ali had used in a previous project. After we showed an internal demo to two friends outside the course, both used the same word: \emph{admin}. The story is for students and educators, not for engineers; we needed the page to look more like \emph{The Pudding} or \emph{Our World in Data} than like a dashboard.
+
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+\foreach \i/\name/\col/\hex in {%
+  0/Paper/paper/FAF7F2,
+  1/Ink/ink/1C1917,
+  2/Muted/muted/57534E,
+  3/Brand/brand/EA580C,
+  4/Soft/soft/FFF3E8,
+  5/Good/good/15803D,
+  6/Alert/alert/DC2626,
+  7/Teal/teal/0E7490%
+}{
+  \fill[draw=rule,line width=0.4pt,fill=\col] (\i*1.95,0) rectangle ++(1.7,1.0);
+  \node[anchor=north,font=\sffamily\tiny,color=muted] at (\i*1.95+0.85,-0.05) {\name};
+  \node[anchor=north,font=\sffamily\tiny\bfseries,color=muted] at (\i*1.95+0.85,-0.40) {\#\hex};
+}
+\end{tikzpicture}
+\end{center}
+\vspace{0.6em}
+
+Elio led the visual rebuild over a long weekend:
+
+\begin{itemize}
+  \item \textbf{Warm cream paper} (\code{\#FAF7F2}) instead of charcoal, with a very faint orange-and-violet radial wash on \code{body::before} for depth.
+  \item \textbf{Deep brand orange} (\code{\#EA580C}) as the only primary accent — wordmark, links, italic emphasis in headlines, active toggle states, focus rings and CTA buttons.
+  \item \textbf{Fraunces} for every headline, stat number and chart card title, with its variable optical-size axis pinned to \code{opsz 144} for proper display contrast. The italic cut handles emphasis in the title and takeaways.
+  \item \textbf{Inter} for body, UI, axis labels and tooltips. \textbf{JetBrains Mono} for very small data labels (``\code{Step 3 of 6}'', radar deltas).
+\end{itemize}
+
+\paragraph{Killing the rainbow.} The perception lecture forced us to look hard at the palettes inside the charts. Our M2 parallel coordinates coloured students by sleep quality with a five-step rainbow (\code{\#f78166 / \#e3b341 / \#8b949e / \#58a6ff / \#3fb950}). That was wrong: sleep quality is \emph{ordinal}, and rainbow palettes invent category boundaries between adjacent levels. We replaced every ordinal axis with a single-hue sequential palette — Blues for sleep quality and performance, Oranges for stress, Purples for duration, Reds for caffeine, Greys for screen time, Greens for physical activity. The only diverging palette we kept is the chi-square residual view of the heatmap (RdBu), because positive and negative residuals genuinely differ in kind.
+
+\paragraph{Light-theme knock-on.} d3's sequential interpolators (\code{interpolateBlues}, \code{interpolateOranges}, $\ldots$) start their $t$ range at near-white, which disappears on cream paper. We wrapped each interpolator in a small \code{seq()} helper that clamps the $t$-domain to roughly $[0.22, 0.95]$ — the lightest ordinal step is now still dark enough to read against the page background, while the darkest step keeps its saturation. We discovered the issue when Hana could not tell apart the bottom two segments of the proportional stacked bar in a screenshot from her laptop.
+
+
+% =========================  S6 — Charts one by one =======================
+\section{The charts, one at a time}
+\label{sec:charts}
+
+\subsection{Scrollytelling beeswarm — Act 1}
+
+The hardest chart to get right. Each dot is one of the 996 students in a \code{d3.forceSimulation} with \code{forceX}, \code{forceY} and \code{forceCollide}. As the user scrolls, an \code{IntersectionObserver} watches the six step cards in the left rail. When a step enters the middle 20\,\% of the viewport (\code{rootMargin: '-40\% 0px -40\% 0px'}), we update the simulation's \code{forceX} to cluster the dots by a new variable, then transition the fill on every circle over 700\,ms.
+
+Three details we had to revisit during review:
+
+\begin{itemize}
+  \item Our first version used a tight \code{gap: 75vh} between step cards, which felt like scrolling cross-country. We dropped the gap to \code{42vh} and reduced the active state to a subtle border + soft orange shadow + a 3\,px accent rule on the left edge. The active step is clearly current without dominating the reading.
+  \item We added a \textbf{colour-legend strip inside the canvas card}, above the SVG — a gradient bar with the low/high category labels, rebuilt on every step change from the same d3 scale the dots are using. Until we added it, our test reader (Ali's flatmate) could tell that the dots were re-colouring but not by \emph{what}.
+  \item The step-0 cluster looked lost in the white card because our initial \code{radiusForCount()} was too conservative. Bumping the radius coefficient from \code{0.16} to \code{0.21} produces a cluster that fills enough of the canvas to feel like the ``996 students'' the caption claims.
+\end{itemize}
+
+\subsection{Heatmap — RQ1}
+
+A $5\times5$ grid; rows are sleep quality, columns are performance. Cells are coloured by count (Blues sequential) by default, with a toggle to switch to chi-square \emph{standardised residuals} (RdBu diverging). The residual mode is where the story lives: positive residuals at \emph{Average $\times$ Average} ($+5.1\,\sigma$) and \emph{Average $\times$ Good} ($+4.6\,\sigma$) reveal a clean diagonal the raw counts hide. The reverse encoding also surfaces an off-diagonal at \emph{Very good $\times$ Poor} ($+2.9\,\sigma$): a small cohort that sleeps well but still rates their grades low.
+
+Cell-label colour is luminance-aware. The helper picks \code{\#ffffff} on darker fills and \code{\#1C1917} on pale ones, so the digits stay legible as the user toggles between counts and residuals.
+
+\subsection{$100\,\%$-stacked bar — RQ2}
+
+We replaced the \emph{grouped} bar we had sketched in Milestone~2 with a \emph{100\,\%-stacked horizontal} bar. Grouped bars sized by absolute count drown the short-duration buckets in the long-duration ones, because 90\,\% of the cohort sits in 7--8\,h or $>$8\,h. Proportional stacking normalises that out — the reader can compare segment widths between bars and see that the performance mix barely shifts between 4\,h sleepers and 8\,h sleepers. We kept an \emph{Absolute} toggle as a sanity check that the proportions are not driven by tiny $n$.
+
+The first version drew the performance legend below the bars in the SVG, which collided with the x-axis title \emph{``Share of students at this duration''}. We moved the legend into a small HTML toolbar at the top of the card alongside the Proportion/Absolute toggle. Cleaner, and accessible to screen readers as plain text.
+
+\subsection{Parallel coordinates — RQ3}
+
+Six axes in left-to-right order — \emph{Stress, Screens, Caffeine, Activity, Sleep, Grades} — so lifestyle inputs flow into the intermediate (sleep) and out into the academic outcome. Lines are coloured by sleep quality on the Blues palette. Each axis carries a \textcolor{good}{$\uparrow$\,better} or \textcolor{alert}{$\downarrow$\,worse} direction tag.
+
+The original sketch had no brush. We added a \code{d3-brushY} to every axis after realising the dropdown filter bar alone could not express the queries we wanted to support (``students with very high stress \emph{and} low activity \emph{and} poor quality''). Brushed ranges emit a \code{\{minOrd, maxOrd\}} into the global filter store and surface as dismissible chips in the filter bar; dropdown filters and brushes intersect, never overwrite.
+
+\begin{tcolorbox}[colback=white,colframe=teal,leftrule=2pt,sharp corners,
+                  before skip=4pt,after skip=4pt]
+{\sffamily\bfseries\color{teal}Implementation trap: infinite brush loop}\par\smallskip
+The chart rebuilds its own brushes on every \code{filter:change} event. The first version dropped into an infinite loop, because the programmatic \code{brush.move()} we call to repaint an existing brush fires the same \code{end} event we listen on. The fix was a one-line guard — \code{if (!ev.sourceEvent) return;} — so only user-driven brush events propagate. We left a long comment in the source explaining the trap, because future us will forget.
+\end{tcolorbox}
+
+A separate fix came late: at narrower viewports the rightmost axis's tick labels (\emph{Excel / Good / Avg / Below / Poor}) were rendered to the \emph{left} of the axis, where the dense line bundle made them illegible. We anchored the last axis's labels to the right of its line — like the first axis — so neither end of the chart ever has labels swimming inside the bundle.
+
+\subsection{Sankey — Duration $\to$ Quality $\to$ Performance}
+
+A Milestone~2 stretch goal that we promoted to a core chart, because it answers the central thesis in one image: the thick band leaving ``More than 8\,hours'' routes mostly through ``Very poor'' sleep quality and ends at ``Poor'' performance. We use \code{d3-sankey} with one SVG \code{linearGradient} per link, interpolating between source-node and target-node colours — uniform-colour links broke the visual continuity in our first try.
+
+The Sankey lives in its own \emph{full-width} row in the dashboard. We initially placed it side-by-side with the stacked bar, but at laptop widths the three-column nodes got crushed and the middle-column labels collided with the left-column duration labels. Giving it the full content width fixed it. We also shortened the column headers to single words (\textsc{Duration / Quality / Performance}) and rendered every node label in dark ink with a thick cream halo — the medium-blue middle nodes (Good / Very good) had been completely invisible under our earlier white-text-on-dark-blue rule.
+
+\subsection{Radar comparison — Act 3}
+
+Five axes: \emph{Stress, Screens, Caffeine, Activity, Fatigue}. The user picks two cohorts via paired dropdowns; the two polygons overlay. We normalise every axis to $0\ldots1$ (mean ord $\div$ max ord), because stress has 4 levels and the others 5 — without the normalisation the stress polygon would look artificially shorter.
+
+$\Delta$ annotations at each vertex show the gap between the groups. Positioning them was fiddlier than we expected: our first pass put each $\Delta$ at a fixed $+32\,\text{px}$ offset from the axis title, which for the \emph{top} vertex (Stress) meant pushing the $\Delta$ \emph{toward} the polygon centre, where it then collided with the data dot and the OUTER tag. We rewrote the placement to be radial — axis title at $r+24$, direction tag at $+15\,\text{px}$ further out, $\Delta$ at $+30\,\text{px}$ further still, with the order flipped on the top vertex so the stack reads outward in every direction.
+
+The group legend was the last thing to land. Two long values like ``More than 8\,hours (duration)'' can stretch Group~A's label past the Group~B swatch if the positions are hard-coded. We replaced the literal \code{x=220} with \code{getComputedTextLength()} and place Group~B with a 32\,px gap after A's measured width.
+
+
+% =========================  S7 — Architecture  ===========================
+\section{Architecture and tools}
+\label{sec:arch}
+
+The dashboard is wired through a single \code{state.js} module exporting \code{setFilter}, \code{setBrush}, \code{resetFilters}, \code{getFilteredRows} and a \code{d3.dispatch('\!filter:change','\!brush:change','\!select:change')}. Every chart file exposes \code{init(container)}, subscribes to \code{filter:change}, and never reads state from anywhere else. The filter bar mirrors dropdown values and renders brush chips from the same store. Two side effects of this architecture: filter state serialises to a URL hash for \emph{share my view}, and the parallel-coords brush chips compose with dropdown filters cleanly.
+
+We chose plain ES modules with no build step. Importing D3 from a CDN, loading the CSV at runtime and serving the website with \code{python3 -m http.server} keeps the project reviewable in any browser and avoids the framework-of-the-month problem. We considered a build setup with Vite for hot reload, but the savings on dev cycles (about three or four seconds per refresh) did not justify adding a build artifact a grader would have to install before reviewing the code.
+
+\begin{tcolorbox}[colback=paper,colframe=rule,leftrule=2pt,sharp corners,
+                  fontupper=\footnotesize\ttfamily]
+website/\\
+\textcolor{muted}{├──} index.html\\
+\textcolor{muted}{├──} css/\{base,layout,components\}.css\\
+\textcolor{muted}{├──} js/\\
+\textcolor{muted}{│\quad ├──} main.js            \textcolor{muted}{\rmfamily // boot}\\
+\textcolor{muted}{│\quad ├──} data.js            \textcolor{muted}{\rmfamily // CSV parser, label whitelist}\\
+\textcolor{muted}{│\quad ├──} state.js           \textcolor{muted}{\rmfamily // filter store + dispatch}\\
+\textcolor{muted}{│\quad ├──} filterBar.js       \textcolor{muted}{\rmfamily // sticky UI}\\
+\textcolor{muted}{│\quad ├──} utils.js           \textcolor{muted}{\rmfamily // tooltip, palettes, CSV download}\\
+\textcolor{muted}{│\quad └──} charts/\{scrolly, heatmap, stacked, parallel, sankey, radar\}.js\\
+\textcolor{muted}{└──} data/students.csv
+\end{tcolorbox}
+
+% =========================  S8 — Lessons  ================================
+\section{What we learned}
+\label{sec:lessons}
+
+Three lessons we'll take away from the project:
+
+\begin{enumerate}
+  \item \textbf{Simulate carefully or not at all.} Our Milestone~2 simulated data nudged us toward the wrong story. Half a day of exploring the real CSV in a notebook before drawing the sketches would have surfaced the paradox earlier, and the M2 sketches would have been more accurate.
+  \item \textbf{The palette lecture matters.} Replacing our prototype's rainbow with single-hue sequential scales made every ordinal chart easier to read, and forced us to articulate what ``good'' and ``bad'' mean for each variable — the direction tags on the parallel and radar axes are a direct consequence.
+  \item \textbf{Design for the screencast.} Forcing ourselves to imagine a 2-minute walkthrough made us pick a strong opening (the paradox) and a clear ending (three takeaways). That decision improved the site for every reader, not only the screencast.
+\end{enumerate}
+
+If we had more time we would add a \emph{cohort comparison} feature in the dashboard (lock the current filter as Group~A, then change it to define Group~B and compare counts side by side), and run a small user-test to refine the scrollytelling cadence — at the moment the steps are still slightly long for one-finger trackpad scrolling.
+
+% =========================  S9 — Peer assessment =========================
+\section{Peer assessment}
+\label{sec:peer}
+
+The project was split as follows. Each task was discussed in our two weekly syncs and reviewed by at least one other team member before being merged.
+
+\renewcommand{\arraystretch}{1.25}
+\begin{tabularx}{\linewidth}{@{}>{\sffamily\bfseries}p{0.18\linewidth} X@{}}
+\toprule
+\textcolor{ink}{Ali Benchekroun} \newline \footnotesize\textcolor{muted}{329911} &
+Technical architecture: \code{data.js} whitelist parser, \code{state.js} filter store and event bus, \code{utils.js} helpers. Implementation of the scrollytelling beeswarm (force simulation + IntersectionObserver), the parallel coordinates with per-axis brushing, and the Sankey. Wiring of the global filter and URL-hash sharing. Local-server setup and the GitHub-Pages deployment. \\
+\midrule
+\textcolor{ink}{Elio Rafoul} \newline \footnotesize\textcolor{muted}{359387} &
+Design system rework: cream-paper palette, brand orange, Fraunces + Inter typography. Implementation of the heatmap with chi-square residual toggle and luminance-aware cell labels, and the 100\,\%-stacked bar with abs/prop toggle. Hero copywriting, takeaways layout, scrollytelling step text and gradient legend. Final two rounds of overlap and legibility polish. \\
+\midrule
+\textcolor{ink}{Hana El Moutaoukil} \newline \footnotesize\textcolor{muted}{340995} &
+Dataset validation: counts checks against the survey spec, identification of the label and bucket mistakes in the M2 prototype, $\chi^2$ confirmation of the duration/performance independence. Implementation of the radar comparison with paired pickers and radial $\Delta$ positioning. Accessibility pass (SVG aria-labels, focus-visible, direction tags). README updates, the process book and figure curation. \\
+\bottomrule
+\end{tabularx}
+
+\vspace{0.5em}
+\noindent\small\textcolor{muted}{We also met for two scheduled review sessions where we read each other's pull requests, ran the site on each other's laptops at different screen sizes, and signed off on four ``polish iterations'' that fixed scrollytelling spacing, parallel-coords legend placement, Sankey label fills, and radar endpoint stacking.}
+
+\vfill
+\noindent\textcolor{rule}{\rule{\linewidth}{0.4pt}}
+\noindent\footnotesize\color{muted}\sffamily%
+Figures referenced throughout this document: the five sketches we submitted with Milestone~2 (heatmap, grouped bar, parallel coords, Sankey, radar) — see the Milestone~2 report — plus screenshots of the final site (hero, scrollytelling step~3, heatmap residual mode, Sankey full-width view, radar comparison) included in the project's GitHub repository.
+
+\end{document}
