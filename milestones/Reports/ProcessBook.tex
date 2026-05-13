@@ -141,23 +141,23 @@ The three research questions we filed in Milestone~1 reflect that assumption:
   \item \rqtag{RQ3} How do screen time before bed, caffeine consumption, stress and physical activity correlate with sleep disturbances?
 \end{itemize}
 
-We split the work into three roles for Milestone~2. \textbf{Ali} built the website skeleton and the chart scaffolds in D3 v7; \textbf{Elio} designed the layout grid and the colour system; \textbf{Hana} wrote the Milestone~2 report and prepared the survey-spec reference table we would later use for data validation. We submitted the prototype with the heatmap for RQ1 implemented, the bar chart and parallel-coordinates scaffolds in place, and \emph{simulated data} that approximated what we believed the real dataset would look like. That last decision — simulating instead of loading — is what set us up for the pivot in Milestone~3.
+We split the work into three roles for Milestone~2. \textbf{Ali} built the website skeleton and wrote the four chart-drawing functions in D3 v7; \textbf{Elio} designed the layout grid and the colour system; \textbf{Hana} wrote the Milestone~2 report and started the survey-spec reference table we would later expand for data validation. The submitted prototype already drew all four core charts --- the sleep-quality $\times$ performance heatmap, a sleep-duration distribution bar, a duration $\times$ performance grouped bar and the lifestyle parallel coordinates --- each backed by \emph{simulated data} hand-tuned to approximate what we believed the real dataset would look like. Three further visualisations (Sankey, radar, linked scatter $+$ brush) sat lower on the page as ``planned enhancement'' cards. That decision to simulate instead of load is what set us up for the pivot in Milestone~3.
 
 % =========================  S2 — M2 mistakes  ============================
 \section{Milestone~2: sketches and what we got wrong}
 \label{sec:m2}
 
-We submitted five hand-drawn sketches with the Milestone~2 report (Figures~1--5 of that document): the sleep-quality $\times$ performance heatmap, the duration $\times$ performance grouped bar, the lifestyle parallel coordinates, the Sankey flow as a stretch goal, and the radar comparison as a second stretch goal. The grader feedback was encouraging, but two issues surfaced once we plugged in the real CSV at the start of Milestone~3.
+We submitted five chart sketches with the Milestone~2 report (Figures~1--5 of that document, rendered in D3 on top of the simulated data so they could double as design mock-ups): the sleep-quality $\times$ performance heatmap, the duration $\times$ performance grouped bar, the lifestyle parallel coordinates, the Sankey flow as a stretch goal, and the radar comparison as a second stretch goal. The grader feedback was encouraging, but two issues surfaced once we plugged in the real CSV at the start of Milestone~3.
 
 \begin{tcolorbox}[title={Two mistakes baked into the prototype}]
-\textbf{1. Label drift.} Our heatmap legend used \emph{Poor / Fair / Average / Good / Excellent} for sleep quality. The real survey labels are \emph{Very poor / Poor / Average / Good / Very good}. We had also assumed a \code{5--6 hours} duration bucket that simply does not exist in the dataset — the survey jumps from \code{4--5 hours} to \code{6--7 hours}.
+\textbf{1. Label drift.} Our heatmap legend used \emph{Poor / Fair / Average / Good / Excellent} for sleep quality; the real survey labels are \emph{Very poor / Poor / Average / Good / Very good}. The duration buckets were equally off: the prototype split sleep into \code{<5h / 5--6h / 6--7h / 7--8h / >8h}, while the real survey uses \code{Less than 4 hours / 4--5 hours / 6--7 hours / 7--8 hours / More than 8 hours} — a different cutoff at the short end and no \code{5--6 hours} band at all.
 
-\textbf{2. Simulated data hid the real story.} The placeholder distribution we generated for the grouped bar deliberately encoded a strong positive correlation between sleep duration and performance. When we loaded the real data we found the opposite — proportions barely shifted across duration buckets.
+\textbf{2. Simulated data hid the real story.} The placeholder arrays we wrote for the grouped bar, the heatmap and even the parallel-coordinates lines all encoded the same prior — short sleep produces bad grades, good sleep produces good grades, and stress and screen time track sleep quality. When we loaded the real CSV we found the opposite for the duration axis (proportions barely shift between bars) and a much messier off-diagonal pattern in the heatmap.
 \end{tcolorbox}
 
 We took those mistakes seriously enough to make data validation the very first task of Milestone~3. Hana wrote a one-page reference sheet listing every column, every category and the spec count from the source dictionary, and Ali wrote a parser in \code{website/js/data.js} that loads the CSV and \emph{whitelists} every category. Any row whose value does not match the spec is dropped with a console warning. With our reference sheet in hand the whitelist passes 996/996 rows on first run.
 
-We took that strict parser as the contract for the rest of the project. Every chart receives normalised \code{\{raw, ord\}} pairs for ordinal fields, so sorting and scaling use the integer ord while tooltips and labels show the original survey wording. We promised ourselves we would not invent values again.
+We took that strict parser as the contract for the rest of the project. Every chart receives normalised \code{\{raw, ord\}} pairs for ordinal fields, so sorting and scaling use the integer ord while tooltips and labels show the original survey wording. We promised ourselves we would not invent values again. The original Milestone~2 prototype is preserved verbatim at \code{website-m2/index.html} in the repository, so the evolution between the two versions is fully traceable side by side; the rebuilt Milestone~3 site occupies the \code{website/} folder.
 
 % =========================  S3 — Pivot  ==================================
 \section{The pivot: what 996 students actually said}
@@ -379,6 +379,6 @@ Dataset validation: counts checks against the survey spec, identification of the
 \vfill
 \noindent\textcolor{rule}{\rule{\linewidth}{0.4pt}}
 \noindent\footnotesize\color{muted}\sffamily%
-Figures referenced throughout this document: the five sketches we submitted with Milestone~2 (heatmap, grouped bar, parallel coords, Sankey, radar) — see the Milestone~2 report — plus screenshots of the final site (hero, scrollytelling step~3, heatmap residual mode, Sankey full-width view, radar comparison) included in the project's GitHub repository.
+Figures referenced throughout this document: the five chart sketches we submitted with Milestone~2 (heatmap, grouped bar, parallel coords, Sankey, radar) — see the Milestone~2 report in this same folder. The final visualisations themselves are best read directly on the live site, where every chart is interactive: \texttt{com-480-data-visualization.github.io/student-sleep-quality-academic-success}.
 
 \end{document}
