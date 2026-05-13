@@ -1,10 +1,12 @@
 # Project of Data Visualization (COM-480)
 
+
 | Student's name     | SCIPER |
 | ------------------ | ------ |
 | Ali Benchekroun    | 329911 |
 | Elio Rafoul        | 359387 |
 | Hana El Moutaoukil | 340995 |
+
 
 [Milestone 1](#milestone-1) • [Milestone 2](#milestone-2) • [Milestone 3](#milestone-3)
 
@@ -37,9 +39,9 @@ Please, fill the following sections about your project.
 >
 > More specifically, the project will explore the following questions :
 >
-> * Do students reporting poor sleep quality or insomnia symptoms also report greater academic difficulties?
-> * Is there a relationship between sleep duration and perceived academic performance?
-> * How do life style behaviors such as screen usage before sleep, caffeine consumption, or stress levels correlate with sleep disturbances?
+> - Do students reporting poor sleep quality or insomnia symptoms also report greater academic difficulties?
+> - Is there a relationship between sleep duration and perceived academic performance?
+> - How do life style behaviors such as screen usage before sleep, caffeine consumption, or stress levels correlate with sleep disturbances?
 
 ### Exploratory Data Analysis
 
@@ -71,21 +73,19 @@ Please, fill the following sections about your project.
 
 **10% of the final grade**
 
-Milestone 2 report: [`milestones/Reports/ReportMilestone2.pdf`](milestones/Reports/ReportMilestone2.pdf)
+Milestone 2 report: `[milestones/Reports/ReportMilestone2.pdf](milestones/Reports/ReportMilestone2.pdf)`
 
-**Live website (GitHub Pages):** [https://com-480-data-visualization.github.io/student-sleep-quality-academic-success/](https://com-480-data-visualization.github.io/student-sleep-quality-academic-success/)
-
-Source in repo: [`website-m2/index.html`](website-m2/index.html) *(the original Milestone 2 prototype, preserved verbatim; the path `website/` now hosts the Milestone 3 rebuild).*
+Source in repo: `[website-m2/index.html](website-m2/index.html)`
 
 ## Milestone 3 (29th May, 5pm)
 
 **80% of the final grade**
 
-**Live demo:** [https://com-480-data-visualization.github.io/student-sleep-quality-academic-success/](https://com-480-data-visualization.github.io/student-sleep-quality-academic-success/)
+**Live website (using Github Pages):** [https://com-480-data-visualization.github.io/student-sleep-quality-academic-success/](https://com-480-data-visualization.github.io/student-sleep-quality-academic-success/)
 
-Source in repo: [`website/index.html`](website/index.html).
+Source in repo: `[website/index.html](website/index.html)`.
 
-**Process book:** [`milestones/Reports/ProcessBook.pdf`](milestones/Reports/ProcessBook.pdf) (LaTeX source: [`milestones/Reports/ProcessBook.tex`](milestones/Reports/ProcessBook.tex))
+**Process book:** `[milestones/Reports/ProcessBook.pdf](milestones/Reports/ProcessBook.pdf)` (LaTeX source: `[milestones/Reports/ProcessBook.tex](milestones/Reports/ProcessBook.tex)`)
 
 **Screencast:** link to the 2-minute video will be added here once the recording is uploaded.
 
@@ -160,3 +160,4 @@ You need a local server (not `file://`) because the page fetches `data/students.
 
 - < 24h: 80% of the grade for the milestone
 - < 48h: 70% of the grade for the milestone
+
