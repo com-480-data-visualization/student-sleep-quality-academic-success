@@ -75,13 +75,15 @@ Milestone 2 report: [`milestones/Reports/ReportMilestone2.pdf`](milestones/Repor
 
 **Live website (GitHub Pages):** [https://com-480-data-visualization.github.io/student-sleep-quality-academic-success/](https://com-480-data-visualization.github.io/student-sleep-quality-academic-success/)
 
-Source in repo: [`website/index.html`](website/index.html).
+Source in repo: [`website-m2/index.html`](website-m2/index.html) *(the original Milestone 2 prototype, preserved verbatim; the path `website/` now hosts the Milestone 3 rebuild).*
 
 ## Milestone 3 (29th May, 5pm)
 
 **80% of the final grade**
 
 **Live demo:** [https://com-480-data-visualization.github.io/student-sleep-quality-academic-success/](https://com-480-data-visualization.github.io/student-sleep-quality-academic-success/)
+
+Source in repo: [`website/index.html`](website/index.html).
 
 **Process book:** [`milestones/Reports/ProcessBook.pdf`](milestones/Reports/ProcessBook.pdf) (LaTeX source: [`milestones/Reports/ProcessBook.tex`](milestones/Reports/ProcessBook.tex))
 
@@ -103,7 +105,9 @@ Sleep deprivation is the usual explanation for student under-performance — but
 │       ├── ReportMilestone2.pdf             ← graded Milestone 2 report
 │       ├── ProcessBook.pdf                  ← Milestone 3 process book
 │       └── ProcessBook.tex                  ← LaTeX source for the process book
-└── website/
+├── website-m2/
+│   └── index.html                           ← original Milestone 2 prototype (archived)
+└── website/                                 ← Milestone 3 site (rebuilt from scratch)
     ├── index.html                           ← entry point — single-page app
     ├── css/{base,layout,components}.css     ← design tokens, page layout, UI parts
     ├── js/

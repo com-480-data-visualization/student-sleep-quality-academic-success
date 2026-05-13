@@ -134,7 +134,7 @@ export function setupSvg(container, { aspect = 0.55, minHeight = 220, maxHeight 
 /* Standardized axis call (handles dark theme, no domain stroke) */
 export function styleAxis(g) {
   g.classed('axis', true);
-  g.selectAll('text').style('font-family', "'DM Sans', sans-serif");
+  g.selectAll('text').style('font-family', "'Inter', sans-serif");
 }
 
 /* Download a JS array of rows as a CSV file. */

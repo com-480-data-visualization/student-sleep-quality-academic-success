@@ -51,12 +51,13 @@ async function boot() {
   } catch (err) {
     console.error('[main] boot failed', err);
     document.body.insertAdjacentHTML('beforeend',
-      `<div style="position:fixed;bottom:1rem;right:1rem;background:#2d1116;color:#f78166;
-        padding:0.7rem 1rem;border-radius:6px;font:0.85rem 'DM Sans',sans-serif;
-        border:1px solid #5d2228;max-width:380px">
-        <strong>Failed to load dataset.</strong><br>
+      `<div style="position:fixed;bottom:1rem;right:1rem;background:#ffffff;color:#1c1917;
+        padding:0.9rem 1.1rem;border-radius:10px;font:0.85rem 'Inter',system-ui,sans-serif;
+        border-left:3px solid #ea580c;box-shadow:0 12px 32px -10px rgba(28,25,23,0.18);
+        max-width:380px;line-height:1.5">
+        <strong style="color:#ea580c">Failed to load dataset.</strong><br>
         ${String(err).replace(/</g, '&lt;')}<br>
-        <span style="color:#8b949e">Are you running over a local server (python3 -m http.server)?</span>
+        <span style="color:#57534e;font-size:0.78rem">Are you running over a local server (python3 -m http.server)?</span>
       </div>`);
   }
 }
