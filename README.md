@@ -4,7 +4,7 @@
 | Student's name     | SCIPER |
 | ------------------ | ------ |
 | Ali Benchekroun    | 329911 |
-| Elio Rafoul        | 359387 |
+| Elias Rafoul       | 359387 |
 | Hana El Moutaoukil | 340995 |
 
 

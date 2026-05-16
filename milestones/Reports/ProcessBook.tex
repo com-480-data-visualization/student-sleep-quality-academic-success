@@ -1,7 +1,7 @@
 % =============================================================
 %  Process Book — Student Sleep & Academic Performance
 %  COM-480 — Data Visualization · EPFL · Spring 2026
-%  Ali Benchekroun · Elio Rafoul · Hana El Moutaoukil
+%  Ali Benchekroun · Elias Rafoul · Hana El Moutaoukil
 % =============================================================
 \documentclass[11pt,a4paper]{article}
 
@@ -117,7 +117,7 @@ shapes \textcolor{brand}{\textit{student grades}}.}
 \vspace{0.7em}
 \noindent
 \begin{tabular}{@{}l@{\hspace{1.2em}}l@{\hspace{1.2em}}l@{}}
-\sffamily\textbf{Ali Benchekroun} & \sffamily\textbf{Elio Rafoul} & \sffamily\textbf{Hana El Moutaoukil} \\
+\sffamily\textbf{Ali Benchekroun} & \sffamily\textbf{Elias Rafoul} & \sffamily\textbf{Hana El Moutaoukil} \\
 \footnotesize\color{muted}329911 & \footnotesize\color{muted}359387 & \footnotesize\color{muted}340995
 \end{tabular}
 
@@ -141,7 +141,7 @@ The three research questions we filed in Milestone~1 reflect that assumption:
   \item \rqtag{RQ3} How do screen time before bed, caffeine consumption, stress and physical activity correlate with sleep disturbances?
 \end{itemize}
 
-We split the work into three roles for Milestone~2. \textbf{Ali} built the website skeleton and wrote the four chart-drawing functions in D3 v7; \textbf{Elio} designed the layout grid and the colour system; \textbf{Hana} wrote the Milestone~2 report and started the survey-spec reference table we would later expand for data validation. The submitted prototype already drew all four core charts --- the sleep-quality $\times$ performance heatmap, a sleep-duration distribution bar, a duration $\times$ performance grouped bar and the lifestyle parallel coordinates --- each backed by \emph{simulated data} hand-tuned to approximate what we believed the real dataset would look like. Three further visualisations (Sankey, radar, linked scatter $+$ brush) sat lower on the page as ``planned enhancement'' cards. That decision to simulate instead of load is what set us up for the pivot in Milestone~3.
+We split the work into three roles for Milestone~2. \textbf{Ali} built the website skeleton and wrote the four chart-drawing functions in D3 v7; \textbf{Elias} designed the layout grid and the colour system; \textbf{Hana} wrote the Milestone~2 report and started the survey-spec reference table we would later expand for data validation. The submitted prototype already drew all four core charts --- the sleep-quality $\times$ performance heatmap, a sleep-duration distribution bar, a duration $\times$ performance grouped bar and the lifestyle parallel coordinates --- each backed by \emph{simulated data} hand-tuned to approximate what we believed the real dataset would look like. Three further visualisations (Sankey, radar, linked scatter $+$ brush) sat lower on the page as ``planned enhancement'' cards. That decision to simulate instead of load is what set us up for the pivot in Milestone~3.
 
 % =========================  S2 — M2 mistakes  ============================
 \section{Milestone~2: sketches and what we got wrong}
@@ -245,7 +245,7 @@ The biggest design change between Milestones~2 and 3 was the \emph{look} of the 
 \end{center}
 \vspace{0.6em}
 
-Elio led the visual rebuild over a long weekend:
+Elias led the visual rebuild over a long weekend:
 
 \begin{itemize}
   \item \textbf{Warm cream paper} (\code{\#FAF7F2}) instead of charcoal, with a very faint orange-and-violet radial wash on \code{body::before} for depth.
@@ -365,7 +365,7 @@ The project was split as follows. Each task was discussed in our two weekly sync
 \textcolor{ink}{Ali Benchekroun} \newline \footnotesize\textcolor{muted}{329911} &
 Technical architecture: \code{data.js} whitelist parser, \code{state.js} filter store and event bus, \code{utils.js} helpers. Implementation of the scrollytelling beeswarm (force simulation + IntersectionObserver), the parallel coordinates with per-axis brushing, and the Sankey. Wiring of the global filter and URL-hash sharing. Local-server setup and the GitHub-Pages deployment. \\
 \midrule
-\textcolor{ink}{Elio Rafoul} \newline \footnotesize\textcolor{muted}{359387} &
+\textcolor{ink}{Elias Rafoul} \newline \footnotesize\textcolor{muted}{359387} &
 Design system rework: cream-paper palette, brand orange, Fraunces + Inter typography. Implementation of the heatmap with chi-square residual toggle and luminance-aware cell labels, and the 100\,\%-stacked bar with abs/prop toggle. Hero copywriting, takeaways layout, scrollytelling step text and gradient legend. Final two rounds of overlap and legibility polish. \\
 \midrule
 \textcolor{ink}{Hana El Moutaoukil} \newline \footnotesize\textcolor{muted}{340995} &
