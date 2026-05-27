@@ -87,7 +87,7 @@ Source in repo: `[website/index.html](website/index.html)`.
 
 **Process book:** `[milestones/Reports/ProcessBook.pdf](milestones/Reports/ProcessBook.pdf)` (LaTeX source: `[milestones/Reports/ProcessBook.tex](milestones/Reports/ProcessBook.tex)`)
 
-**Screencast:** link to the 2-minute video will be added here once the recording is uploaded.
+**Screencast:** `[milestones/Reports/ScreencastStudentSleep.mov](milestones/Reports/ScreencastStudentSleep.mov)`.
 
 ### The story
 
