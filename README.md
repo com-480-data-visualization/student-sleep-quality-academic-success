@@ -75,9 +75,9 @@ Please, fill the following sections about your project.
 
 **Live preview (via raw.githack.com):** [https://raw.githack.com/com-480-data-visualization/student-sleep-quality-academic-success/main/website-m2/index.html](https://raw.githack.com/com-480-data-visualization/student-sleep-quality-academic-success/main/website-m2/index.html)
 
-Milestone 2 report: `[milestones/Reports/ReportMilestone2.pdf](milestones/Reports/ReportMilestone2.pdf)`
+Milestone 2 report: [`milestones/Reports/ReportMilestone2.pdf`](milestones/Reports/ReportMilestone2.pdf)
 
-Source in repo: `[website-m2/index.html](website-m2/index.html)`
+Source in repo: [`website-m2/index.html`](website-m2/index.html)
 
 ## Milestone 3 (29th May, 5pm)
 
@@ -85,13 +85,13 @@ Source in repo: `[website-m2/index.html](website-m2/index.html)`
 
 **Live website (using Github Pages):** [https://com-480-data-visualization.github.io/student-sleep-quality-academic-success/](https://com-480-data-visualization.github.io/student-sleep-quality-academic-success/)
 
-Source in repo: `[website/index.html](website/index.html)`.
+Source in repo: [`website/index.html`](website/index.html).
 
-**Process book:** `[milestones/Reports/ProcessBook.pdf](milestones/Reports/ProcessBook.pdf)` (LaTeX source: `[milestones/Reports/ProcessBook.tex](milestones/Reports/ProcessBook.tex)`)
+**Process book:** [`milestones/Reports/ProcessBook.pdf`](milestones/Reports/ProcessBook.pdf) (LaTeX source: [`milestones/Reports/ProcessBook.tex`](milestones/Reports/ProcessBook.tex))
 
 **Screencast (watch on YouTube):** [https://youtu.be/fPZ7k1cgDO0](https://youtu.be/fPZ7k1cgDO0)
 
-**Screencast (download from repo):** `[milestones/Reports/ScreencastStudentSleep.mov](https://github.com/com-480-data-visualization/student-sleep-quality-academic-success/raw/main/milestones/Reports/ScreencastStudentSleep.mov)` (32 MB — click to download).
+**Screencast (download from repo):** [`milestones/Reports/ScreencastStudentSleep.mov`](https://github.com/com-480-data-visualization/student-sleep-quality-academic-success/raw/main/milestones/Reports/ScreencastStudentSleep.mov) (32 MB — click to download).
 
 ### The story
 
