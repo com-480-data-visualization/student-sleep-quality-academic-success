@@ -89,7 +89,7 @@ Source in repo: [`website/index.html`](website/index.html).
 
 **Process book:** [`milestones/Reports/ProcessBook.pdf`](milestones/Reports/ProcessBook.pdf) (LaTeX source: [`milestones/Reports/ProcessBook.tex`](milestones/Reports/ProcessBook.tex))
 
-**Screencast:** [`milestones/Reports/ScreencastStudentSleep.mov`](milestones/Reports/ScreencastStudentSleep.mov).
+**Screencast:** [`milestones/Reports/ScreencastStudentSleep.mov`](https://github.com/com-480-data-visualization/student-sleep-quality-academic-success/raw/main/milestones/Reports/ScreencastStudentSleep.mov) (32 MB — click to play/download).
 
 ### The story
 
